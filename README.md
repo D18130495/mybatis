@@ -58,6 +58,24 @@ structure
        </environments>
    </configuration>
 ```
+Use db.properties store the connection information
+``` java
+    driver=com.mysql.jdbc.Driver
+    url=jdbc:mysql://localhost:3306/mybatis?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username=root
+    password=qpuur990415
+    
+    <properties resource="db.properties"></properties>
+```
+
+Rename the package
+``` java
+    <typeAliases>
+        <typeAlias type="com.shun.pojo.User" alias="User"></typeAlias>
+        //use package, can change the name in the pojo .class use @Alias("")
+        <package name="com.shun.pojo"/>
+    </typeAliases>
+```
 
 ### 5. utils --> MybatisUtils.class
 ``` java
@@ -114,8 +132,11 @@ structure
 
 ### 9. resources --> Mybatis-config.xml register mapper --> PojoMapper.xml
 ``` xml
+    //three ways
     <mappers>
         <mapper resource="com/shun/mapper/UserMapper.xml"/>
+        <mapper class="com.shun.mapper.UserMapper"/>
+        <package name="com.shun.mapper"/>
     </mappers>
 ```
 ![An image](images/register.jpg)
@@ -146,7 +167,7 @@ structure
 
 # sql function
 
-## Use map to insert user
+### Use map<String, Object> to insert user
 ``` java
     //map.class
     int insertUser2(Map<String, Object> map);
