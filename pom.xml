@@ -1,11 +1,13 @@
-# mybatis
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-## Project structure and configuration
-1. create maven
-2. delete src folder
-3. maven dependencies
-### Maven dependencies
-``` xml
+    <groupId>com.shun</groupId>
+    <artifactId>mybatis-study</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
@@ -25,15 +27,4 @@
             <version>4.12</version>
         </dependency>
     </dependencies>
-```
-
-## Login service
-css clear cache problem
-|situation|syntax|
-|-----------|-----------|
-|Before| href="${pageContext.request.contextPath}/css/style.css"|
-|After|href="${pageContext.request.contextPath}/css/style.css?1"|
-
-![An image](images/login.jpg)
-
-## Logout service
+</project>
