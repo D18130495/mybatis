@@ -76,4 +76,24 @@ public class UserMapperTest {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Test
+    public void useLimitGetUser() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("startIndex", 0);
+        map.put("pageSize", 2);
+
+        List<User> userList = userMapper.useLimitGetUser(map);
+
+        for(User user : userList) {
+            System.out.println(user);
+        }
+
+        sqlSession.close();
+    }
 }

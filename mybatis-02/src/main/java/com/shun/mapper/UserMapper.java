@@ -10,6 +10,8 @@ public interface UserMapper {
 
     User getUserById(int id);
 
+    List<User> useLimitGetUser(Map<String, Object> map);
+
     int insertUser(User user);
 
     int insertUser2(Map<String, Object> map);

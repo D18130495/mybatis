@@ -70,7 +70,7 @@ Use db.properties store the connection information
 
 Show logging
 ``` java
-    <settings>
+     <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
 ```
