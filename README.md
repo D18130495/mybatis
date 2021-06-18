@@ -109,10 +109,11 @@ Rename the package
                e.printStackTrace();
            }
        }
-   
-           public static SqlSession getSqlSession() {
-               return sqlSessionFactory.openSession();
-           }
+       
+       //Set to true, is autocommit
+       public static SqlSession getSqlSession() {
+           return sqlSessionFactory.openSession(true);
+       }
    }
 ```
 
@@ -216,11 +217,41 @@ Rename the package
     </select>
 ```
 
-# Use annotation to write sql
+# Use annotations to write sql
+
+### sql in com.xxx.mapper
 ``` java
     //In Mapper --> UserMapper.interface
     @Select("select * from user")
     List<User> getUsers();
+```
+
+### use @param to make com.xxx.mapper more norm
+``` java
+    @Select("select * from user where id = #{id}")
+    User getUserById(@Param("id") int id);
+```
+
+# Use lombok to generate pojo
+1. download plugin
+2. Maven dependency
+``` xml
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.10</version>
+    </dependency>
+```
+3. Use in the pojo class
+``` java
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class User {
+        private int id;
+        private String name;
+        private String pwd;
+    }
 ```
 
 |situation|syntax|
