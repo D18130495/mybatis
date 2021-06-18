@@ -68,6 +68,13 @@ Use db.properties store the connection information
     <properties resource="db.properties"></properties>
 ```
 
+Show logging
+``` java
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+```
+
 Rename the package
 ``` java
     <typeAliases>
@@ -193,6 +200,20 @@ Rename the package
         sqlSession.commit();
         sqlSession.close();
     }
+```
+
+### Use resultMap if Databases value is not same as pojo value
+``` java
+    //column is the value for Databases, property is the value for pojo
+    <resultMap id="userMap" type="User">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="password"/>
+    </resultMap>
+    
+    <select id="getUserList" resultMap="userMap">
+        select * from mybatis.user;
+    </select>
 ```
 
 |situation|syntax|

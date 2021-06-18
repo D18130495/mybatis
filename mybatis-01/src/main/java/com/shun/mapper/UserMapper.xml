@@ -4,7 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.shun.mapper.UserMapper">
-    <select id="getUserList" resultType="User">
+    <resultMap id="userMap" type="User">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pwd" property="pwd"/>
+    </resultMap>
+    
+    <select id="getUserList" resultMap="userMap">
         select * from mybatis.user;
     </select>
 
