@@ -1,6 +1,6 @@
 # Mybatis
 Official website: https://mybatis.org/mybatis-3/zh/index.html
-## Project structure and configuration
+# Project structure and configuration
 1. Create maven
 2. Delete src folder
 3. Maven dependencies and another module
@@ -12,7 +12,8 @@ Official website: https://mybatis.org/mybatis-3/zh/index.html
 9. resources --> Mybatis-config.xml register mapper --> PojoMapper.xml
 10. pom build export config
 structure
-   ![An image](images/structure.jpg)
+   
+![An image](images/structure.jpg)
 
 ### 3. Maven dependencies
 ``` xml
@@ -117,6 +118,7 @@ structure
         <mapper resource="com/shun/mapper/UserMapper.xml"/>
     </mappers>
 ```
+![An image](images/register.jpg)
 
 ## 10. pom build export config
 ``` xml
