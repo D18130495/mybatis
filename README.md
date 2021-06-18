@@ -144,7 +144,35 @@ structure
    </build>
 ```
 
+# sql function
 
+## Use map to insert user
+``` java
+    //map.class
+    int insertUser2(Map<String, Object> map);
+    
+    //map.interface
+    <insert id="insertUser2" parameterType="map">
+        insert into mybatis.user (id, name ,pwd) values (#{userID}, #{userName}, #{password});
+    </insert>
+    
+    //test
+    public void addUser2() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userID", 5);
+        map.put("userName", "刘八");
+        map.put("password", "987654321");
+
+        userMapper.insertUser2(map) ;
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+```
 
 |situation|syntax|
 |-----------|-----------|
