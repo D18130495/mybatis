@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserMapperTest {
     @Test
-    public void test() {
+    public void findUser() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
 
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -20,6 +20,29 @@ public class UserMapperTest {
             System.out.println(user);
         }
 
+        sqlSession.close();
+    }
+
+    @Test
+    public void findUserById() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        System.out.println(userMapper.getUserById(1));
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void addUser() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        userMapper.insertUser(new User(4, "马六", "321654987"));
+
+        sqlSession.commit();
         sqlSession.close();
     }
 }
