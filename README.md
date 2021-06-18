@@ -216,6 +216,13 @@ Rename the package
     </select>
 ```
 
+# Use annotation to write sql
+``` java
+    //In Mapper --> UserMapper.interface
+    @Select("select * from user")
+    List<User> getUsers();
+```
+
 |situation|syntax|
 |-----------|-----------|
 |Before| href="${pageContext.request.contextPath}/css/style.css"|
