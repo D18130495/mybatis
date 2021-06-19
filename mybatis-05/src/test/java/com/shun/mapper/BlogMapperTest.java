@@ -59,4 +59,23 @@ public class BlogMapperTest {
 
         sqlSession.close();
     }
+
+    @Test
+    public void testQueryBlogChoose() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("title", "java");
+
+        List<Blog> list= blogMapper.queryBlogChoose(map);
+
+        for(Blog blog : list) {
+            System.out.println(blog);
+        }
+
+        sqlSession.close();
+    }
 }

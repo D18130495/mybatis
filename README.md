@@ -300,8 +300,7 @@ Rename the package
 
 # Use dynamic-sql
 
-###
-utils generate UUID
+### utils generate UUID
 ``` java
     import java.util.UUID;
 
@@ -315,13 +314,75 @@ utils generate UUID
 ### Use if
 ``` java
     <select id="queryBlogIf" parameterType="map" resultType="Blog">
-        select * from mybatis.blog where 1 = 1
+        select * from mybatis.blog
+        <where>
+            <if test="title != null">
+                and title = #{title}
+            </if>
+            <if test="author != null">
+                and author = #{author}
+            </if>
+        </where>
+    </select>
+```
+
+### Use choose
+``` java
+     <select id="queryBlogChoose" parameterType="map" resultType="Blog">
+        select * from mybatis.blog
+        <where>
+            <choose>
+                <when test="title != null">
+                    title = #{title}
+                </when>
+                <when test="author != null">
+                    author = #{author}
+                </when>
+                <otherwise>
+                    views = #{views}
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+```
+
+### Use trim to customize
+``` java 
+    update user
+    <trim prefix="set" suffixOverrides=",">
+        <if test="cash!=null and cash!=''">cash= #{cash},</if>
+        <if test="address!=null and address!=''">address= #{address},</if>
+    </trim>
+    <where>id = #{id}</where>
+```
+
+``` java
+    update user
+    set
+    <trim suffixOverrides="," suffix="where id = #{id}">
+        <if test="cash!=null and cash!=''">cash= #{cash},</if>
+        <if test="address!=null and address!=''">address= #{address},</if>
+    </trim>
+```
+
+### Use foreach
+
+### Use sql snippet
+``` java
+    <sql id="if-title-author">
         <if test="title != null">
-            and title = #{title}
+            title = #{title}
         </if>
         <if test="author != null">
             and author = #{author}
         </if>
+    </sql>
+
+    <select id="queryBlogIf" parameterType="map" resultType="Blog">
+        select * from mybatis.blog
+        <where>
+            <include refid="if-title-author"></include>
+        </where>
     </select>
 ```
 
