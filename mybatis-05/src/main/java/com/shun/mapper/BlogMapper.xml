@@ -7,4 +7,16 @@
         insert into mybatis.blog (id, title, author, create_time, views)
         values (#{id}, #{title}, #{author}, #{createTime}, #{views});
     </insert>
+
+    <select id="queryBlogIf" parameterType="map" resultType="Blog">
+        select * from mybatis.blog
+        <where>
+            <if test="title != null">
+                and title = #{title}
+            </if>
+            <if test="author != null">
+                and author = #{author}
+            </if>
+        </where>
+    </select>
 </mapper>

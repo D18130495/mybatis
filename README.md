@@ -312,6 +312,19 @@ utils generate UUID
 }
 ```
 
+### Use if
+``` java
+    <select id="queryBlogIf" parameterType="map" resultType="Blog">
+        select * from mybatis.blog where 1 = 1
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </select>
+```
+
 |situation|syntax|
 |-----------|-----------|
 |Before| href="${pageContext.request.contextPath}/css/style.css"|
