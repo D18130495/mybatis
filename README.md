@@ -72,6 +72,13 @@ Show logging
 ``` java
      <settings>
         <setting name="logImpl" value="STDOUT_LOGGING"/>
+     </settings>
+```
+
+Convert attribute(create_time --> createTime)
+``` java
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 ```
 
@@ -289,6 +296,20 @@ Rename the package
             <result property="name" column="tname"/>
         </association>
     </resultMap>
+```
+
+# Use dynamic-sql
+
+###
+utils generate UUID
+``` java
+    import java.util.UUID;
+
+    public class IdUtils {
+        public static String getId() {
+            return UUID.randomUUID().toString().replaceAll("-", "");
+        }
+}
 ```
 
 |situation|syntax|
