@@ -254,6 +254,43 @@ Rename the package
     }
 ```
 
+# Use resultMap to implement N:1 relationship
+1. First way
+``` java
+    <select id="getStudent" resultMap="StudentTeacher">
+        select * from student;
+    </select>
+    
+    <resultMap id="StudentTeacher" type="Student">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        //association use for object
+        <association property="teacher" column="tid" javaType="Teacher" select="getTeacherById"/>
+    </resultMap>
+
+    <select id="getTeacherById" parameterType="int" resultType="Teacher">
+        select * from teacher where id = #{id};
+    </select>
+```
+
+2. Second way
+``` java
+    <select id="getStudent2" resultMap="StudentTeacher2">
+        select s.id sid, s.name sname, t.id tid, t.name tname
+        from student s, teacher t
+        where s.tid = t.id;
+    </select>
+
+    <resultMap id="StudentTeacher2" type="Student">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <association property="teacher" javaType="Teacher">
+            <result property="id" column="tid"/>
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+```
+
 |situation|syntax|
 |-----------|-----------|
 |Before| href="${pageContext.request.contextPath}/css/style.css"|
